@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #084C41;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <nav class = "navbar bg-white">
+        <div class="container">
+            <div class = "navbar-content">
+                <div class = "brand-and-toggler">
+                    <a href = "/" class = "navbar-brand">
+                        <img src = "assets/images\upper.jpg" alt = "" class = "navbar-brand-icon">
+                        <span class = "navbar-brand-text">DFLT <span>DATA</span>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h2>BGAs Data</h2>
+
+    <table class="container">
+        
+        <thead>
+            <tr>
+                
+                <th>Time</th>
+                <th>Board Type</th>
+                <th>Ball Size</th>
+                <th>Paste Type</th>
+                <th>Paste Size</th>
+                <th>Reflow Temp</th>
+                <th>Reflow Time</th>
+                <th>Board List</th>
+                <th>Paste List</th>
+                <th>Hirox Result</th>
+                <th>Drop Test Result</th>
+                <th>Shear Test Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bga in bgas %}
+            <tr>
+                
+                <td>{{ bga.timer }}</td>
+                <td>{{ bga.board_type }}</td>
+                <td>{{ bga.ball_size }}</td>
+                <td>{{ bga.paste_type }}</td>
+                <td>{{ bga.paste_size }}</td>
+                <td>{{ bga.reflow_temp }}</td>
+                <td>{{ bga.reflow_time }}</td>
+                <td>{{ bga.board_list }}</td>
+                <td>{{ bga.paste_list }}</td>
+                
+                <td>
+                    {% if bga.hirox_result %}
+                        <img src="{{  bga.hirox_result }}" alt="Hirox Result Image"  width="60" height="80">
+                    {% endif %}
+                </td>
+                
+                <td>{{ bga.drop_test_result }}</td>
+                <td>{{ bga.shear_test_result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <div class="pagination">
+        {% if bga_prev_url %}
+            <a href="{{ bga_prev_url }}">BGAs Previous</a>
+        {% endif %}
+        &nbsp; 
+        {% if bga_next_url %}
+            <a href="{{ bga_next_url }}">BGAs Next</a>
+        {% endif %}
+    </div>
+
+
+    <h2>NonBGAs Data</h2>
+
+    <table class="container"> 
+        <thead>
+            <tr>
+                
+                <th>Time</th>
+                <th> Type</th>
+                <th>Description</th>
+                <th>Hirox Result</th>
+                <th>Drop Test Result</th>
+                <th>Shear Test Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nonbga in nonbgas %}
+            <tr>
+                
+                <td>{{ nonbga.timer }}</td>
+                <td>{{ nonbga.type }}</td>
+                <td>{{ nonbga.description}}</td>
+               
+                <td>
+                    {% if nonbga.hirox_result %}
+                        <img src="{{  nonbga.hirox_result }}" alt="Hirox Result Image"  width="60" height="80">
+                    {% endif %}
+                </td>
+                
+                <td>{{ nonbga.drop_test_result }}</td>
+                <td>{{ nonbga.shear_test_result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if nonbga_prev_url %}
+            <a href="{{ nonbga_prev_url }}">NonBGAs Previous</a>
+        {% endif %}
+        &nbsp; 
+        {% if nonbga_next_url %}
+            <a href="{{ nonbga_next_url }}">NonBGAs Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+

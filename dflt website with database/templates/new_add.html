@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ADD DATA PAGE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- custom css -->
+        <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    <body onload="toggleSections()">
+        <nav class = "navbar bg-white">
+            <div class="container">
+                <div class = "navbar-content">
+                    <div class = "brand-and-toggler">
+                        <a href = "/" class = "navbar-brand">
+                            <img src = "assets/images\upper.jpg" alt = "" class = "navbar-brand-icon">
+                            <span class = "navbar-brand-text">DFLT <span>DATA</span>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- this is about  first select part  -->
+
+
+        <div class="container">
+            <div class=" form-control">
+                
+                <div class=" form-label">
+                    <label for="typeSection" class="form-label">Select Type</label>
+                    <select id="typeSection"   class="form-control"   onchange="toggleSections()" required>
+                        <option value="bga" selected>BGA</option>
+                        <option value="non-bga">Non-BGA</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                
+
+                <div class="form-elem">
+                    <label for="start_date" class="form-label">Start Date</label>
+                    <span class="form-control edu_start_date" id="start_date"></span>
+                    <span class="form-text"></span>
+                    <script>
+                        let startDateElement = document.getElementById('start_date');
+                        let today = new Date();
+                        let year = today.getFullYear();
+                        let month = ("0" + (today.getMonth() + 1)).slice(-2);
+                        let day = ("0" + today.getDate()).slice(-2);
+                        startDateElement.textContent = `${year}-${month}-${day}`;
+                    </script>
+                </div>
+
+
+            </div>
+        </div>
+
+       
+
+        <!-- this is about  board type and bal size part  -->
+
+        <div  id="aboutSection" class = "container">
+            <div class = "about-cnt">
+                <form action="" class="cv-form" id = "cv-form">
+                    <div   class = "cv-form-blk">
+
+                        <div class = "cv-form-row-title">
+                            <h3>BGA PART</h3>
+                        </div>
+
+                        
+
+                        <div  class = "cv-form-row cv-form-row-about">
+                            <div class = "cols-3">
+                                
+                                <div class = "form-elem">
+                                    <label for = "" class = "form-label">BOARD TYPE</label>
+                                    <input name = "board_type" type = "text" class = "form-control firstname" id = "" onkeyup="generateCV()" placeholder="e.g. DFLT">
+                                    <span class="form-text"></span>
+                                </div>
+                                
+                                <div class = "form-elem">
+                                    <label for = "" class = "form-label">Ball Size</label>
+                                    <input name = "ball_size" type = "text" class = "form-control middlename" id = "" onkeyup="generateCV()" placeholder="e.g. 300">
+                                    <span class="form-text"></span>
+                                </div>
+                                
+                                    
+                            </div>
+                        </div>
+
+                    </div>
+                
+            </div>
+
+            <!-- this is ball composition -->
+            <div class="form-elem">
+                <label for="elementComposition" class="form-label">Ball Composition</label>
+                <div id="compositionTable">
+                    <div class="compositionRow">
+                        <select class="form-control elementName">
+                            <option disabled selected value> -- select an element -- </option>
+                            <option value="Hydrogen">Hydrogen (H)</option>
+                            <option value="Helium">Helium (He)</option>
+                            <option value="Lithium">Lithium (Li)</option>
+                            <option value="Beryllium">Beryllium (Be)</option>
+                            <option value="Boron">Boron (B)</option>
+                            <option value="Carbon">Carbon (C)</option>
+                            <option value="Nitrogen">Nitrogen (N)</option>
+                            <option value="Oxygen">Oxygen (O)</option>
+                            <option value="Fluorine">Fluorine (F)</option>
+                            <option value="Neon">Neon (Ne)</option>
+
+                            <option value="Sodium">Sodium (Na)</option>
+                            <option value="Magnesium">Magnesium (Mg)</option>
+                            
+                            <option value="Aluminium">Aluminium (Al)</option>
+                            <option value="Silicon">Silicon (Si)</option>
+                        </select>
+                        <input type="text" class="form-control percentage" placeholder="Enter Percentage">
+                        <button type="button" class="add-btn" onclick="addRow('compositionTable')">+</button>
+                        
+                    </div>
+                    
+                </div>
+                <button type="button" class="finish-btn" onclick="showTable('compositionTable', 'displayTable', board_list);">Finish</button>
+                <table id="displayTable">
+                    <!-- Table Rows go here -->
+                </table>
+                
+
+            </div>
+<!--  this is the paste part -->
+        
+            <div class = "form-elem">
+                <label for = "" class = "form-label">Paste TYPE</label>
+                <input name = "paste_type" type = "text" class = "form-control firstname" id = "" onkeyup="generateCV()" placeholder="e.g. DFLT">
+                <span class="form-text"></span>
+            </div>
+            
+            <div class = "form-elem">
+                <label for = "" class = "form-label">Paste Size</label>
+                <input name = "paste_size" type = "text" class = "form-control middlename" id = "" onkeyup="generateCV()" placeholder="e.g. 300">
+                <span class="form-text"></span>
+            </div>
+
+            <div class = "form-elem">
+                <label for = "" class = "form-label">Paste Composition</label>
+                <div id="compositionTable2">
+                    <div class="compositionRow">
+                        <select class="form-control elementName">
+                            <option disabled selected value> -- select an element -- </option>
+                            <option value="Hydrogen">Hydrogen (H)</option>
+                            <option value="Helium">Helium (He)</option>
+                            <option value="Lithium">Lithium (Li)</option>
+                            <option value="Beryllium">Beryllium (Be)</option>
+                            <option value="Boron">Boron (B)</option>
+                            <option value="Carbon">Carbon (C)</option>
+                            <option value="Nitrogen">Nitrogen (N)</option>
+                            <option value="Oxygen">Oxygen (O)</option>
+                            <option value="Fluorine">Fluorine (F)</option>
+                            <option value="Neon">Neon (Ne)</option>
+
+                            <option value="Sodium">Sodium (Na)</option>
+                            <option value="Magnesium">Magnesium (Mg)</option>
+                            
+                            <option value="Aluminium">Aluminium (Al)</option>
+                            <option value="Silicon">Silicon (Si)</option>
+                        </select>
+                        <input type="text" class="form-control percentage" placeholder="Enter Percentage">
+                        <button type="button" class="add-btn" onclick="addRow('compositionTable2')">+</button>
+                        
+                    </div>
+                    
+                </div>
+                <button type="button" class="finish-btn" onclick="showTable('compositionTable2', 'displayTable2', paste_list);">Finish</button>
+                <table id="displayTable2">
+                    <!-- Table Rows go here -->
+                </table>
+            </div>
+            <!-- this is the reflow part -->
+            
+            <div class = "form-elem">
+                <label for = "" class = "form-label">Reflow Tempeture</label>
+                <input name = "reflow_temp" type = "text" class = "form-control email" id = "" onkeyup="generateCV()" placeholder="e.g. 200">
+                <span class="form-text"></span>
+              
+            </div>
+            <div class = "form-elem">
+                
+                <label for = "" class = "form-label">Reflow Time</label>
+                <input name = "reflow_time" type = "text" class = "form-control email" id = "" onkeyup="generateCV()" placeholder="e.g. 30">
+                <span class="form-text"></span>
+            </div>
+            <div class="form-elem">
+                <div class="form-label">
+                    <label for="typeSection" class="form-label">test_result_type</label>
+                    <select id="typeSection2" class="form-control" onchange="test_type()"  required>
+                        <option value="choose one">choose one type</option>
+                        <option value="hirox">hirox</option>
+                        <option value="shear_test">shear test</option>
+                        <option value="drop_shock">drop shock</option>
+                        <option value="others">others</option>
+                    </select>
+                </div>
+                
+                <!-- Single Photo Input for Hirox -->
+                <div class = "form-elem">
+                <div id="photoInput" style="display: none;">                    
+                    <input name="single_photo_result" type="file" class="form-control image" id="singlePhotoResult" accept="image/*" onChange="test_type();">
+                    <img id="displayImage" src="#" alt="Uploaded Image" style="display: none;"/>
+
+                </div>
+                
+                
+                <!-- Number Input for Shear Test and Drop Shock -->
+                <div id="numberInput" style="display: none;">
+                    <label for="numberResult" class="form-label">Enter Number</label>
+                    <input name="number_result" type="number" class="form-control" oninput="test_type()" id="numberResult" value='0'>
+                </div>
+            
+                <!-- ZIP Input for Others -->
+                <div id="zipInput" style="display: none;">
+                    <label for="zipResult" class="form-label">Upload ZIP File</label>
+                    <input name="zip_result" type="file" class="form-control" id="zipResult" onchange="test_type()" accept=".zip">
+                </div>
+              </div>
+                
+                <button id="uploadButton" type="button" class="btn btn-primary" onclick=" handleFileUpload()">Upload</button>
+                <div id="uploadStatus">Uploading</div>
+            </div>
+            
+
+        </div>
+    
+
+        
+
+       
+        <!-- this is the nonbga_part have not add to js -->
+        <div  id="achievementsSection" class = "container">
+            <div class = "about-cnt">
+                <form action="" class="cv-form" id = "cv-form">
+                    <div   class = "cv-form-blk">
+
+                        <div class = "cv-form-row-title">
+                            <h3> NON BGA PART</h3>
+                        </div>
+
+                        <div class = "row-separator repeater">
+                            <div class = "repeater" data-repeater-list = "group-a">
+                                <div data-repeater-item>
+                                    <div class = "cv-form-row cv-form-row-achievement">
+                                        <div class = "cols-2">
+                                            <div class = "form-elem">
+                                                <label for = "" class = "form-label">Title</label>
+                                                <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "TYPE" onkeyup="generateCV()" placeholder="e.g. description" value="type">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class = "form-elem">
+                                                <label for = "" class = "form-label">Description</label>
+                                                <input name = "achieve_description" type = "text" class = "form-control achieve_description" id = "DESCRIPTION" onkeyup="generateCV()" placeholder="e.g. something" value="description">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                        </div>
+
+                        
+
+                       
+
+                    </div>
+                </form>
+            </div>
+            <div class="form-elem">
+                <div class="form-label">
+                    <label for="typeSection" class="form-label">test_result_type</label>
+                    <select id="typeSection3" class="form-control" onchange="test_type2()"  required>
+                        <option value="choose one">choose one type</option>
+                        <option value="hirox">hirox</option>
+                        <option value="shear_test">shear test</option>
+                        <option value="drop_shock">drop shock</option>
+                        <option value="others">others</option>
+                    </select>
+                </div>
+                
+                <!-- Single Photo Input for Hirox -->
+                <div class = "form-elem">
+                <div id="photoInput2" style="display: none;">                    
+                    <input name="single_photo_result" type="file" class="form-control image" id="singlePhotoResult2" accept="image/*" onChange="test_type2();">
+                    <img id="displayImage" src="#" alt="Uploaded Image" style="display: none;"/>
+
+                </div>
+                
+                
+                <!-- Number Input for Shear Test and Drop Shock -->
+                <div id="numberInput2" style="display: none;">
+                    <label for="numberResult" class="form-label">Enter Number</label>
+                    <input name="number_result" type="number" class="form-control" oninput="test_type2()" id="numberResult2" value='0'>
+                </div>
+            
+                <!-- ZIP Input for Others -->
+                <div id="zipInput2" style="display: none;">
+                    <label for="zipResult" class="form-label">Upload ZIP File</label>
+                    <input name="zip_result" type="file" class="form-control" id="zipResult2" onchange="test_type2()" accept=".zip">
+                </div>
+              </div>
+                
+                <button id="uploadButton" type="button" class="btn btn-primary" onclick=" handleFileUpload()">Upload</button>
+                <div id="uploadStatus">Uploading</div>
+            </div>
+            
+        </div>
+    </form>
+    <!-- this is the print part -->
+
+        <section id = "preview-sc" class = "print_area">
+            <div class = "container">
+                <div class = "preview-cnt">
+                    <div class = "preview-cnt-l bg-green text-black">
+                        <div class = "preview-blk">
+                            <div class = "preview-blk-title">
+                                <h3>about</h3>
+                            </div>
+                            <div class = "preview-item preview-item-name">
+                                <span class = "preview-item-val fw-6" id = "timeDsp"></span>
+                            </div>
+                           
+                            <div class = "preview-item preview-item-name">
+                                <span class = "preview-item-val fw-6" id = "ballDsp"></span>
+                            </div>
+                            
+                            <div class = "preview-item preview-item-name">
+                                <span class = "preview-item-val fw-6" id = "pasteDsp"></span>
+                            </div>
+
+                            <div class = "preview-item preview-item-name">
+                                <span class = "preview-item-val fw-6" id = "reflowDsp"></span>
+                            </div>
+                            
+                        </div>
+
+
+                        
+                    </div>
+
+                    <div class = "preview-cnt-r bg-white">
+                        
+
+                        <div class = "preview-blk">
+                            <div class = "preview-blk-title">
+                                <h3>composition</h3>
+                            </div>
+                            <div class = "projects-items preview-blk-list" id = "projects_dsp"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class = "print-btn-sc">
+            <div class = "container">
+                <button type = "button" class = "print-btn btn btn-primary" onclick="printCV()">Print Profile</button>
+            </div>
+        </section>
+
+        <section class="print-btn-sc">
+            <div class="container">
+                <button type="button" class="print-btn btn btn-primary" onclick="combinedFunction();">Add & Upload</button>
+            </div>
+        </section>
+        
+
+        
+
+
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <!-- jquery repeater cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- custom js -->
+        <script src = "assets/js/script.js"></script>
+        <!-- app js -->
+        <script src="assets/js/new_app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+
+    </body>
+</html>

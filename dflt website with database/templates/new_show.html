@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ADD DATA PAGE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- custom css -->
+        <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+    <body>
+        <nav class = "navbar bg-white">
+            <div class="container">
+                <div class = "navbar-content">
+                    <div class = "brand-and-toggler">
+                        <a href = "/" class = "navbar-brand">
+                            <img src = "assets/images\upper.jpg" alt = "" class = "navbar-brand-icon">
+                            <span class = "navbar-brand-text">DFLT <span>DATA</span>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <h2>BGAs Data</h2>
+    
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th>Time</th>
+                    <th>Board Type</th>
+                    <th>Ball Size</th>
+                    <th>Paste Type</th>
+                    <th>Paste Size</th>
+                    <th>Reflow Temp</th>
+                    <th>Reflow Time</th>
+                    <th>Board List</th>
+                    <th>Paste List</th>
+                    <th>Hirox Result</th>
+                    <th>Drop Test Result</th>
+                    <th>Shear Test Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bga in bgas %}
+                <tr>
+                    
+                    <td>{{ bga.timer }}</td>
+                    <td>{{ bga.board_type }}</td>
+                    <td>{{ bga.ball_size }}</td>
+                    <td>{{ bga.paste_type }}</td>
+                    <td>{{ bga.paste_size }}</td>
+                    <td>{{ bga.reflow_temp }}</td>
+                    <td>{{ bga.reflow_time }}</td>
+                    <td>{{ bga.board_list }}</td>
+                    <td>{{ bga.paste_list }}</td>
+                    
+                    <td>
+                        {% if bga.hirox_result %}
+                            <img src="{{  bga.hirox_result }}" alt="Hirox Result Image" >
+                        {% endif %}
+                    </td>
+                    
+                    <td>{{ bga.drop_test_result }}</td>
+                    <td>{{ bga.shear_test_result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   
+        
+
+
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <!-- jquery repeater cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- custom js -->
+        <script src = "assets/js/script.js"></script>
+        <!-- app js -->
+        <script src="assets/js/new_app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+
+    </body>
+</html>

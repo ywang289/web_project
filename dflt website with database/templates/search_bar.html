@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #084C41;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <nav class="navbar bg-white">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="brand-and-toggler">
+                    <a href="/" class="navbar-brand">
+                        <img src="assets/images/upper.jpg" alt="" class="navbar-brand-icon">
+                        DFLT <span>DATA</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h2>PLEASE SELECT THE INFORMATION</h2>
+
+    <div class="container">
+        <div class=" form-control">
+            
+            <div class=" form-label">
+                <label for="typeSection" class="form-label">Select Type</label>
+                <select id="selection"   class="form-control"   onchange="toggleColumnDropdown()" required>
+                    
+                        <option value="Null">please choose the board type first</option>
+                        <option value="BGA">BGA</option>
+                        <option value="NON-BGA">NON-BGA</option>
+                    </select>
+
+                    <div class=" form-label">
+
+                    <select class="form-control" id="bgaDropdown" name="bgas_columns" style="display: none;">
+                        {% for column in bga_columns%}
+                            <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
+                
+                    <!-- NONBGAS columns dropdown -->
+                    <select class="form-control" id="nonbgaDropdown" name="nonbgas_columns" style="display: none;">
+                        {% for column in nonbgas_columns %}
+                            <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-label">
+                <select class="form-control" id="columnValues" onchange="toggleCustomInput()">
+                    <option value="None">choose from database</option>
+                    <!-- 其他的值将从数据库中动态填充 -->
+                </select>
+            </div>
+            <div class="form-label" id="result">
+                <!-- Results will be displayed here -->
+            </div>
+            
+
+           
+            
+
+
+        </div>
+    </div>
+
+    
+        
+
+        
+    </div>
+
+    <!-- JS Section -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <!-- jquery repeater cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- custom js -->
+        <script src = "assets/js/script.js"></script>
+        <!-- app js -->
+        <script src="assets/js/new_app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</body>
+</html>
